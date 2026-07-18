@@ -26,7 +26,7 @@ export class GymTrackerDB extends Dexie {
       sets: "++id, sessionId, exerciseId, createdAt",
       templates: "++id, name",
       measurements: "++id, date, type",
-      goals: "++id, type, exerciseId",
+      goals: "++id, type, exerciseId, createdAt",
       settings: "id"
     });
   }
