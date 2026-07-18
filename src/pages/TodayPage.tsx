@@ -1,3 +1,5 @@
+import TodayScreen from "../features/today/TodayScreen";
+
 export default function TodayPage() {
-  return <h1 className="text-xl font-bold">Today</h1>;
+  return <TodayScreen />;
 }
