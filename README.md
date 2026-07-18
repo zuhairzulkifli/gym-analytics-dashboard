@@ -1,74 +1,81 @@
-#Gym Analytics Dashboard
+# Gym Tracker
 
-A full-stack workout tracking web app that goes beyond simple set logging into genuine training analytics, built with Python and Streamlit, applying statistical process control (SPC) methodology from a semiconductor manufacturing background to strength training data.
+A comprehensive, local-first workout tracker built as an installable Progressive Web App. Live workout logging with a rest timer, workout templates, personal-record tracking, body measurements, goals, a training calendar/streak view, a custom exercise library, and an anatomical muscle-volume heatmap — all stored on-device (IndexedDB), no account or backend required.
 
-![Python](https://img.shields.io/badge/Python-3.x-blue)
-![Streamlit](https://img.shields.io/badge/Streamlit-App-red)
+![React](https://img.shields.io/badge/React-18-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+![Vite](https://img.shields.io/badge/Vite-5-purple)
 ![License](https://img.shields.io/badge/License-MIT-green)
-
-## Why this exists
-
-Most gym trackers log numbers. This one treats a training program the way a quality engineer treats a manufacturing process: is progress trending, stable, or genuinely out of control? It's a personal training tool built to apply real SPC and reliability-engineering methodology, the same kind used to monitor equipment performance and catch process drift in a fab, to something I track every week: my own lifts.
 
 ## Features
 
-- **Live workout mode** - start a session, track it with a real-time timer, log sets as you go
-- **Flexible manual logging** - backfill a session you forgot to track live
-- **Auto-categorized exercise database** - barbell (SBD), machines, and bodyweight/calisthenics movements, each pre-mapped to the correct muscle group
-- **Session-based history** - sets are grouped by workout ("Upper Body — July 9"), with an expandable view and per-set delete
-- **Estimated 1RM trend** - tracks strength progression per exercise using the Epley formula
-- **Weekly training volume by muscle group** - spot imbalances in programming at a glance
-- **Anatomical muscle heatmap** - a custom SVG body diagram shaded by training volume, so neglected muscle groups are visually obvious, with selectable time windows (week / month / all-time)
-- **Persistent local storage** - all data saved to CSV, survives restarts
-
-## Screenshots
+- **Live workout mode** — start a session, track it with a real-time timer, log sets as you go, with an auto-starting rest timer between sets
+- **Workout templates** — save a routine and start it with one tap
+- **Personal records** — PRs computed live from your logged sets, with a "New PR!" toast and a dedicated PR board
+- **History** — sessions grouped by day with per-set delete, plus a calendar view showing your current training streak
+- **Progress analytics** — estimated 1RM trend (Epley formula), weekly training volume by muscle group, an anatomical front/back muscle heatmap, bodyweight/measurement trend charts
+- **Body measurements & goals** — track bodyweight and custom measurements over time; set and track goals against a lift, a 1RM, a bodyweight, or a weekly training frequency
+- **Custom exercises** — extend the ~85-exercise built-in library with your own
+- **Export/import** — full JSON backup/restore, plus CSV export of raw sets
+- **Installable on iOS** — Add to Home Screen from Safari for a standalone, offline-capable app
 
 ## Tech stack
 
-- **Frontend/App framework:** [Streamlit](https://streamlit.io)
-- **Data handling:** Pandas
-- **Analytics/visualization:** Matplotlib, NumPy
-- **Storage:** CSV (local file-based persistence)
+- **Framework:** React + TypeScript + Vite
+- **Styling:** Tailwind CSS
+- **Storage:** Dexie.js over IndexedDB (fully local, offline-first)
+- **Charts:** Recharts
+- **State:** Zustand (active session/timer), React Router (navigation)
+- **PWA:** vite-plugin-pwa (installable manifest + service worker)
 
 ## Quick start
 
 ```bash
-# Clone the repo
-git clone https://github.com/yourusername/gym-analytics-dashboard.git
-cd gym-analytics-dashboard
-
-# Create and activate a virtual environment
-python -m venv venv
-source venv/Scripts/activate   # Windows (Git Bash)
-# source venv/bin/activate     # macOS/Linux
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run the app
-streamlit run app.py
+npm install
+npm run dev
 ```
 
-The app opens automatically at `http://localhost:8501`.
+Open the printed local URL in a desktop browser to develop, or on your phone's browser (same network / deployed URL) to test the mobile layout.
+
+## Running tests
+
+```bash
+npm run test
+```
+
+## Deploying and installing on iPhone
+
+1. Deploy the `dist/` build to Vercel or Netlify (or any static host):
+   ```bash
+   npm run build
+   npx vercel --prod        # or drag-and-drop the dist/ folder into Netlify
+   ```
+2. On your iPhone, open the deployed URL in **Safari** (must be Safari, not Chrome, for iOS PWA install).
+3. Tap the **Share** icon → **Add to Home Screen**.
+4. The app now launches full-screen from your home screen, works offline, and stores all your data locally on the device.
+
+> Data lives only in that browser/app's IndexedDB — use Settings → Data → Export to back it up periodically.
 
 ## Project structure
 
 ```
-gym-analytics-dashboard/
-├── app.py              # Main Streamlit application
-├── data/
-│   └── workouts.csv     # Logged workout data (generated on first run)
-├── requirements.txt      # Python dependencies
-└── README.md
+gym-tracker-pwa/
+├── src/
+│   ├── db/            # Dexie schema, types, query layer
+│   ├── data/           # seed exercise library
+│   ├── store/           # Zustand active-workout store
+│   ├── features/         # workout, history, progress, templates, measurements, goals, settings, today
+│   ├── components/       # shared UI (TabBar, Card, Toast, Layout)
+│   └── pages/             # route-level page components
+├── public/                 # PWA icons, favicon
+├── legacy/                 # original Streamlit/Python version (superseded, kept for reference)
+└── docs/superpowers/        # design spec and implementation plan for this rewrite
 ```
 
-## Roadmap
+## Legacy version
 
-- [ ] Deploy live (Streamlit Community Cloud)
-- [ ] Add automated tests for analytics functions
-- [ ] Export session summaries as PDF/CSV reports
-- [ ] Multi-user support
+The original Streamlit/Python dashboard this project replaced lives in [`legacy/`](legacy/README.md).
 
 ## Author
 
-Built by Zuhair - www.linkedin.com/in/zuhair-zulkifli
+Built by Zuhair — www.linkedin.com/in/zuhair-zulkifli
