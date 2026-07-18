@@ -39,4 +39,10 @@ describe("seedExercises", () => {
     const all = await db.exercises.toArray();
     expect(all.length).toBe(exerciseSeed.length);
   });
+
+  it("does not duplicate rows when called concurrently (e.g. StrictMode double effect)", async () => {
+    await Promise.all([seedExercises(db), seedExercises(db)]);
+    const all = await db.exercises.toArray();
+    expect(all.length).toBe(exerciseSeed.length);
+  });
 });

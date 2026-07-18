@@ -96,7 +96,12 @@ export const exerciseSeed: SeedExercise[] = [
 ];
 
 export async function seedExercises(db: GymTrackerDB): Promise<void> {
-  const count = await db.exercises.count();
-  if (count > 0) return;
-  await db.exercises.bulkAdd(exerciseSeed.map((e) => ({ ...e, isCustom: false })));
+  // Runs the check-and-insert inside one readwrite transaction so concurrent
+  // callers (e.g. React StrictMode's double effect invocation) serialize
+  // instead of both observing count === 0 and double-seeding.
+  await db.transaction("rw", db.exercises, async () => {
+    const count = await db.exercises.count();
+    if (count > 0) return;
+    await db.exercises.bulkAdd(exerciseSeed.map((e) => ({ ...e, isCustom: false })));
+  });
 }
