@@ -19,7 +19,7 @@ export default function ProgressScreen() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-xl font-bold">Progress</h1>
+      <h1 className="font-display text-4xl font-semibold tracking-[-0.02em]">Progress</h1>
 
       <MuscleHeatmap revealDelayMs={0} />
 
@@ -32,7 +32,7 @@ export default function ProgressScreen() {
 
       <div className="grid gap-4 md:grid-cols-2">
         <Card variant="subtle" revealDelayMs={STAGGER_MS * 4}>
-          <h2 className="mb-2 font-semibold">Log a measurement</h2>
+          <h2 className="mb-2 font-display text-lg font-semibold">Log a measurement</h2>
           <MeasurementForm onSaved={() => setRefreshKey((k) => k + 1)} />
         </Card>
         <div key={`m-${refreshKey}`}>
@@ -42,7 +42,7 @@ export default function ProgressScreen() {
 
       <div className="grid gap-4 md:grid-cols-2">
         <Card variant="subtle" revealDelayMs={STAGGER_MS * 6}>
-          <h2 className="mb-2 font-semibold">Set a goal</h2>
+          <h2 className="mb-2 font-display text-lg font-semibold">Set a goal</h2>
           <GoalForm onSaved={() => setRefreshKey((k) => k + 1)} />
         </Card>
         <div key={`g-${refreshKey}`}>

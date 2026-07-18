@@ -52,39 +52,39 @@ export default function TodayScreen() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-xl font-bold">👋 Welcome back</h1>
+      <h1 className="font-display text-3xl font-semibold tracking-[-0.02em]">Welcome back</h1>
       <Card className="flex items-center justify-between">
-        <span className="text-sm">Current streak</span>
-        <span className="text-lg font-semibold text-brand-text">🔥 {streak} days</span>
+        <span className="text-sm text-ink-muted">Current streak</span>
+        <span className="text-lg font-semibold text-accent-text">🔥 {streak} days</span>
       </Card>
       <Card>
         <button
           onClick={() => navigate("/train")}
-          className="w-full rounded-lg bg-brand py-2 font-semibold"
+          className="w-full rounded-lg bg-accent py-2 font-semibold text-white transition-colors duration-200 hover:bg-accent-dark"
         >
           ▶️ Start a workout
         </button>
       </Card>
       {templates.length > 0 && (
         <Card>
-          <h2 className="mb-2 font-semibold">Quick start from template</h2>
+          <h2 className="mb-2 font-display text-lg font-semibold">Quick start from template</h2>
           <div className="space-y-2">
             {templates.map((t) => (
               <button
                 key={t.id}
                 onClick={() => handleStartFromTemplate(t)}
-                className="block w-full rounded-lg bg-slate-800 px-3 py-2 text-left text-sm"
+                className="block w-full rounded-lg bg-surface-card px-3 py-2 text-left text-sm transition-colors duration-200 hover:bg-surface-raised"
               >
-                {t.name} <span className="text-slate-400">· {t.items.length} exercises</span>
+                {t.name} <span className="text-ink-muted">· {t.items.length} exercises</span>
               </button>
             ))}
           </div>
         </Card>
       )}
       <Card>
-        <h2 className="mb-2 font-semibold">Recent PRs</h2>
+        <h2 className="mb-2 font-display text-lg font-semibold">Recent PRs</h2>
         {recentPRs.length === 0 ? (
-          <p className="text-sm text-slate-400">No PRs in the last 7 days yet.</p>
+          <p className="text-sm text-ink-muted">No PRs in the last 7 days yet.</p>
         ) : (
           <ul className="space-y-1 text-sm">
             {recentPRs.map(({ exercise, weightKg }) => (

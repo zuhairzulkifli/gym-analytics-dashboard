@@ -10,10 +10,13 @@
 // have the most visual weight.
 //
 // This ramp fixes the encoding for a dark surface: untrained recedes into
-// the UI's own muted tones, and volume ramps toward a vivid, glowing blue.
-const UNTRAINED = "#1e293b"; // slate-800 — recedes into the card border/bg, correctly deprioritized
-const TRAINED_FLOOR = { r: 30, g: 41, b: 82 }; // dim indigo — visible but quiet, for barely-trained groups
-const TRAINED_PEAK = { r: 96, g: 165, b: 250 }; // blue-400 — vivid, matches --brand-text — for the most-trained group
+// the UI's own muted tones, and volume ramps toward a vivid, glowing color.
+//
+// Recalibrated for the warm editorial palette (near-black + terracotta):
+// untrained matches --surface-raised, trained ramps toward --accent-text.
+const UNTRAINED = "#2b241b"; // surface-raised — recedes into the card, correctly deprioritized
+const TRAINED_FLOOR = { r: 58, g: 42, b: 30 }; // dim warm brown — visible but quiet, for barely-trained groups
+const TRAINED_PEAK = { r: 224, g: 138, b: 95 }; // accent-text — vivid terracotta glow, for the most-trained group
 
 function toHex(n: number): string {
   return Math.round(n).toString(16).padStart(2, "0");

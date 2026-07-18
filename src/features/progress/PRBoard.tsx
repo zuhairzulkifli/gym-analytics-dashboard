@@ -27,7 +27,7 @@ export default function PRBoard({ revealDelayMs }: { revealDelayMs?: number }) {
 
   if (rows.length === 0) {
     return (
-      <Card variant="emphasis" revealDelayMs={revealDelayMs} className="text-sm text-slate-400">
+      <Card variant="emphasis" revealDelayMs={revealDelayMs} className="text-sm text-ink-muted">
         No PRs yet — log some sets to start building your board.
       </Card>
     );
@@ -35,23 +35,28 @@ export default function PRBoard({ revealDelayMs }: { revealDelayMs?: number }) {
 
   return (
     <Card variant="emphasis" revealDelayMs={revealDelayMs}>
-      <h2 className="mb-3 font-semibold">PR board</h2>
-      <div className="space-y-1">
+      <h2 className="mb-1 font-display text-lg font-semibold">PR board</h2>
+      <div className="divide-y divide-surface-border">
         {rows.map(({ exercise, prs }) => (
           <div
             key={exercise.id}
-            className="flex items-center justify-between gap-3 rounded-lg px-2 py-2 text-sm transition-colors duration-200 hover:bg-slate-900/40"
+            className="flex items-center justify-between gap-3 py-3 transition-colors duration-200 hover:bg-surface/40"
           >
-            <span className="flex items-center gap-2 min-w-0">
+            <span className="flex min-w-0 items-center gap-2">
               <span
                 className="h-2 w-2 shrink-0 rounded-full"
                 style={{ backgroundColor: MUSCLE_GROUP_COLORS[exercise.muscleGroup] }}
                 aria-hidden="true"
               />
-              <span className="truncate">{exercise.name}</span>
+              <span className="truncate text-sm">{exercise.name}</span>
             </span>
-            <span className="shrink-0 whitespace-nowrap text-slate-400">
-              {prs.maxWeightKg}kg · 1RM {prs.best1RM.toFixed(1)}kg · {prs.maxReps} reps
+            <span className="flex shrink-0 items-baseline gap-1.5">
+              <span className="font-display text-2xl font-semibold tabular-nums">{prs.maxWeightKg}</span>
+              <span className="text-xs text-ink-muted">kg</span>
+              <span className="ml-2 font-display text-lg font-semibold tabular-nums text-accent-text">
+                {prs.best1RM.toFixed(0)}
+              </span>
+              <span className="text-xs text-ink-muted">1RM</span>
             </span>
           </div>
         ))}

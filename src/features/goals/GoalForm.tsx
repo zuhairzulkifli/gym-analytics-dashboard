@@ -42,7 +42,7 @@ export default function GoalForm({ onSaved }: { onSaved: () => void }) {
       <select
         value={type}
         onChange={(e) => setType(e.target.value as GoalType)}
-        className="w-full rounded-lg bg-slate-800 px-3 py-2 text-sm"
+        className="w-full rounded-lg bg-surface-card px-3 py-2 text-sm transition-colors duration-200"
       >
         {GOAL_TYPES.map((t) => (
           <option key={t.value} value={t.value}>
@@ -54,7 +54,7 @@ export default function GoalForm({ onSaved }: { onSaved: () => void }) {
         <select
           value={exerciseId}
           onChange={(e) => setExerciseId(Number(e.target.value))}
-          className="w-full rounded-lg bg-slate-800 px-3 py-2 text-sm"
+          className="w-full rounded-lg bg-surface-card px-3 py-2 text-sm transition-colors duration-200"
         >
           {exercises.map((ex) => (
             <option key={ex.id} value={ex.id}>
@@ -68,11 +68,11 @@ export default function GoalForm({ onSaved }: { onSaved: () => void }) {
         placeholder="Target value"
         value={targetValue}
         onChange={(e) => setTargetValue(Number(e.target.value))}
-        className="w-full rounded-lg bg-slate-800 px-3 py-2 text-sm"
+        className="w-full rounded-lg bg-surface-card px-3 py-2 text-sm transition-colors duration-200"
       />
       <button
         type="submit"
-        className="w-full rounded-lg bg-brand py-2 text-sm font-semibold transition-colors duration-200 hover:bg-brand-dark"
+        className="w-full rounded-lg bg-accent py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-accent-dark"
       >
         Save goal
       </button>

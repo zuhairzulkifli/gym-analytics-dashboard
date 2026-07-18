@@ -31,7 +31,7 @@ export default function ExercisePicker({
   return (
     <div>
       <input
-        className="mb-3 w-full rounded-lg bg-slate-800 px-3 py-2 text-sm"
+        className="mb-3 w-full rounded-lg bg-surface-card px-3 py-2 text-sm transition-colors duration-200"
         placeholder="Search exercises…"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
@@ -39,14 +39,14 @@ export default function ExercisePicker({
       <div className="max-h-64 space-y-4 overflow-y-auto">
         {Object.entries(byCategory).map(([category, items]) => (
           <div key={category}>
-            <p className="mb-1 text-xs uppercase text-slate-400">{category}</p>
+            <p className="mb-1 text-xs uppercase tracking-wide text-ink-muted">{category}</p>
             {items.map((ex) => (
               <button
                 key={ex.id}
-                className="block w-full rounded-lg px-2 py-2 text-left text-sm hover:bg-slate-800"
+                className="block w-full rounded-lg px-2 py-2 text-left text-sm transition-colors duration-200 hover:bg-surface-card"
                 onClick={() => onSelect(ex)}
               >
-                {ex.name} <span className="text-slate-400">· {ex.muscleGroup}</span>
+                {ex.name} <span className="text-ink-muted">· {ex.muscleGroup}</span>
               </button>
             ))}
           </div>

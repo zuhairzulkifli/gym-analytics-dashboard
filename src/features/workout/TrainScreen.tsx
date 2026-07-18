@@ -58,11 +58,11 @@ export default function TrainScreen() {
     return (
       <div className="space-y-4">
         <Card>
-          <h1 className="mb-3 text-lg font-bold">Start a workout</h1>
+          <h1 className="mb-3 font-display text-2xl font-semibold tracking-[-0.02em]">Start a workout</h1>
           <select
             value={sessionType}
             onChange={(e) => setSessionType(e.target.value)}
-            className="mb-3 w-full rounded-lg bg-slate-800 px-3 py-2 text-sm"
+            className="mb-3 w-full rounded-lg bg-surface-card px-3 py-2 text-sm transition-colors duration-200"
           >
             {SESSION_TYPES.map((t) => (
               <option key={t} value={t}>
@@ -70,12 +70,15 @@ export default function TrainScreen() {
               </option>
             ))}
           </select>
-          <button onClick={handleStart} className="w-full rounded-lg bg-brand py-2 font-semibold">
+          <button
+            onClick={handleStart}
+            className="w-full rounded-lg bg-accent py-2 font-semibold text-white transition-colors duration-200 hover:bg-accent-dark"
+          >
             ▶️ Start Workout
           </button>
         </Card>
         <Card>
-          <h2 className="mb-2 font-semibold">Or start from a template</h2>
+          <h2 className="mb-2 font-display text-lg font-semibold">Or start from a template</h2>
           <TemplateList onStart={handleStartFromTemplate} />
         </Card>
       </div>
@@ -86,7 +89,10 @@ export default function TrainScreen() {
     <div className="space-y-4">
       <Card className="flex items-center justify-between">
         <span className="font-semibold">{sessionName} in progress</span>
-        <button onClick={handleEnd} className="rounded-lg bg-slate-800 px-3 py-1 text-sm">
+        <button
+          onClick={handleEnd}
+          className="rounded-lg bg-surface-card px-3 py-1 text-sm transition-colors duration-200 hover:bg-surface-raised"
+        >
           ⏹️ End
         </button>
       </Card>

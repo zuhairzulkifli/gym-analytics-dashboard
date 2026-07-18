@@ -25,9 +25,9 @@ export default function SetLogForm({
       }}
     >
       <p className="text-sm font-semibold">
-        {exercise.name} <span className="text-slate-400">· {exercise.muscleGroup}</span>
+        {exercise.name} <span className="text-ink-muted">· {exercise.muscleGroup}</span>
       </p>
-      <label className="block text-xs text-slate-400">
+      <label className="block text-xs text-ink-muted">
         Weight (kg)
         <input
           type="number"
@@ -35,10 +35,10 @@ export default function SetLogForm({
           min={0}
           value={weight}
           onChange={(e) => setWeight(Number(e.target.value))}
-          className="mt-1 w-full rounded-lg bg-slate-800 px-3 py-2 text-sm"
+          className="mt-1 w-full rounded-lg bg-surface-card px-3 py-2 text-sm text-ink transition-colors duration-200"
         />
       </label>
-      <label className="block text-xs text-slate-400">
+      <label className="block text-xs text-ink-muted">
         Reps
         <input
           type="number"
@@ -46,15 +46,15 @@ export default function SetLogForm({
           min={1}
           value={reps}
           onChange={(e) => setReps(Number(e.target.value))}
-          className="mt-1 w-full rounded-lg bg-slate-800 px-3 py-2 text-sm"
+          className="mt-1 w-full rounded-lg bg-surface-card px-3 py-2 text-sm text-ink transition-colors duration-200"
         />
       </label>
-      <label className="block text-xs text-slate-400">
+      <label className="block text-xs text-ink-muted">
         RPE
         <select
           value={rpe}
           onChange={(e) => setRpe(Number(e.target.value))}
-          className="mt-1 w-full rounded-lg bg-slate-800 px-3 py-2 text-sm"
+          className="mt-1 w-full rounded-lg bg-surface-card px-3 py-2 text-sm text-ink transition-colors duration-200"
         >
           {RPE_OPTIONS.map((r) => (
             <option key={r} value={r}>
@@ -64,10 +64,17 @@ export default function SetLogForm({
         </select>
       </label>
       <div className="flex gap-2">
-        <button type="button" onClick={onCancel} className="flex-1 rounded-lg bg-slate-800 py-2 text-sm">
+        <button
+          type="button"
+          onClick={onCancel}
+          className="flex-1 rounded-lg bg-surface-card py-2 text-sm transition-colors duration-200 hover:bg-surface-raised"
+        >
           Cancel
         </button>
-        <button type="submit" className="flex-1 rounded-lg bg-brand py-2 text-sm font-semibold">
+        <button
+          type="submit"
+          className="flex-1 rounded-lg bg-accent py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-accent-dark"
+        >
           Log set
         </button>
       </div>

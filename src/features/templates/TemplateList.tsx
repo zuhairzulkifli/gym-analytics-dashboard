@@ -16,28 +16,28 @@ export default function TemplateList({
   }, []);
 
   if (templates.length === 0) {
-    return <p className="text-sm text-slate-400">No templates saved yet.</p>;
+    return <p className="text-sm text-ink-muted">No templates saved yet.</p>;
   }
 
   return (
     <div className="space-y-2">
       {templates.map((t) => (
-        <div key={t.id} className="flex items-center justify-between rounded-lg bg-slate-800 px-3 py-2 text-sm">
+        <div key={t.id} className="flex items-center justify-between rounded-lg bg-surface-card px-3 py-2 text-sm">
           <div>
             <p className="font-semibold">{t.name}</p>
-            <p className="text-xs text-slate-400">{t.items.length} exercises</p>
+            <p className="text-xs text-ink-muted">{t.items.length} exercises</p>
           </div>
           <div className="flex gap-2">
             {onStart && (
               <button
-                className="rounded-lg bg-brand px-3 py-2 text-xs transition-colors duration-200 hover:bg-brand-dark"
+                className="rounded-lg bg-accent px-3 py-2 text-xs text-white transition-colors duration-200 hover:bg-accent-dark"
                 onClick={() => onStart(t)}
               >
                 Start
               </button>
             )}
             <button
-              className="rounded-lg bg-slate-700 px-3 py-2 text-xs transition-colors duration-200 hover:bg-slate-600"
+              className="rounded-lg bg-surface-raised px-3 py-2 text-xs transition-colors duration-200 hover:bg-surface-raised2"
               onClick={async () => {
                 await deleteTemplate(t.id!);
                 reload();

@@ -10,7 +10,7 @@ const TABS = [
 
 export default function TabBar() {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 border-t border-slate-800 bg-slate-900 pb-[env(safe-area-inset-bottom)]">
+    <nav className="fixed bottom-0 left-0 right-0 border-t border-surface-border bg-surface pb-[env(safe-area-inset-bottom)]">
       <div className="mx-auto flex max-w-md md:max-w-2xl lg:max-w-4xl">
         {TABS.map((tab) => (
           <NavLink
@@ -19,7 +19,7 @@ export default function TabBar() {
             end={tab.to === "/"}
             className={({ isActive }) =>
               `flex flex-1 flex-col items-center gap-1 py-2 text-xs transition-colors duration-200 ${
-                isActive ? "text-brand-text" : "text-slate-400"
+                isActive ? "text-accent-text" : "text-ink-muted"
               }`
             }
           >

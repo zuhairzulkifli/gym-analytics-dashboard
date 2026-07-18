@@ -22,7 +22,7 @@ export default function CalendarView() {
     <Card>
       <div className="mb-3 flex items-center justify-between">
         <span className="font-semibold">{format(today, "MMMM yyyy")}</span>
-        <span className="text-sm text-brand-text">🔥 {streak} day streak</span>
+        <span className="text-sm text-accent-text">🔥 {streak} day streak</span>
       </div>
       <div className="grid grid-cols-7 gap-1 text-center text-xs">
         {days.map((day) => {
@@ -31,7 +31,7 @@ export default function CalendarView() {
           return (
             <div
               key={key}
-              className={`rounded-full py-1 transition-colors duration-200 ${trained ? "bg-brand text-white" : "text-slate-400"}`}
+              className={`rounded-full py-1 transition-colors duration-200 ${trained ? "bg-accent text-white" : "text-ink-muted"}`}
             >
               {format(day, "d")}
             </div>

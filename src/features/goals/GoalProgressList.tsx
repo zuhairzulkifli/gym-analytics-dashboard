@@ -41,7 +41,7 @@ export default function GoalProgressList({ revealDelayMs }: { revealDelayMs?: nu
 
   if (goals.length === 0) {
     return (
-      <Card revealDelayMs={revealDelayMs} className="text-sm text-slate-400">
+      <Card revealDelayMs={revealDelayMs} className="text-sm text-ink-muted">
         No goals set yet.
       </Card>
     );
@@ -51,7 +51,7 @@ export default function GoalProgressList({ revealDelayMs }: { revealDelayMs?: nu
 
   return (
     <Card revealDelayMs={revealDelayMs}>
-      <h2 className="mb-2 font-semibold">Goals</h2>
+      <h2 className="mb-2 font-display text-lg font-semibold">Goals</h2>
       <div className="space-y-3">
         {goals.map((goal) => {
           const p = progress.get(goal.id!) ?? { current: 0, target: goal.targetValue, percent: 0 };
@@ -64,7 +64,7 @@ export default function GoalProgressList({ revealDelayMs }: { revealDelayMs?: nu
                     : `${exerciseName(goal.exerciseId)} → ${goal.targetValue}`}
                 </span>
                 <button
-                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-sm text-red-400 transition-colors duration-200 hover:bg-red-950/40"
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-sm text-danger transition-colors duration-200 hover:bg-danger/10"
                   aria-label="Delete goal"
                   onClick={async () => {
                     await deleteGoal(goal.id!);
@@ -74,13 +74,13 @@ export default function GoalProgressList({ revealDelayMs }: { revealDelayMs?: nu
                   ✕
                 </button>
               </div>
-              <div className="h-2 w-full rounded-full bg-slate-800">
+              <div className="h-2 w-full rounded-full bg-surface-card">
                 <div
-                  className="h-2 rounded-full bg-brand transition-[width] duration-700 ease-out-quart"
+                  className="h-2 rounded-full bg-accent transition-[width] duration-700 ease-out-quart"
                   style={{ width: `${p.percent}%` }}
                 />
               </div>
-              <p className="mt-1 text-xs text-slate-400">
+              <p className="mt-1 text-xs text-ink-muted">
                 {p.current} / {p.target} ({p.percent}%)
               </p>
             </div>

@@ -6,6 +6,7 @@ import { getAllSets } from "../../db/queries/sets";
 import { listExercises } from "../../db/queries/exercises";
 import { computeVolume } from "../../utils/calculations";
 import { MUSCLE_GROUP_COLORS, MUSCLE_GROUPS } from "../../utils/muscleGroupColors";
+import { CHART_AXIS_TICK, CHART_TOOLTIP_STYLE } from "../../utils/chartTheme";
 import type { Exercise, WorkoutSet, MuscleGroup } from "../../db/types";
 
 export default function VolumeChart({ revealDelayMs }: { revealDelayMs?: number }) {
@@ -38,7 +39,7 @@ export default function VolumeChart({ revealDelayMs }: { revealDelayMs?: number 
 
   if (chartData.length === 0) {
     return (
-      <Card revealDelayMs={revealDelayMs} className="text-sm text-slate-400">
+      <Card revealDelayMs={revealDelayMs} className="text-sm text-ink-muted">
         Log a few sets to see weekly volume.
       </Card>
     );
@@ -46,13 +47,13 @@ export default function VolumeChart({ revealDelayMs }: { revealDelayMs?: number 
 
   return (
     <Card revealDelayMs={revealDelayMs}>
-      <h2 className="mb-2 font-semibold">Weekly volume per muscle group</h2>
+      <h2 className="mb-2 font-display text-lg font-semibold">Weekly volume per muscle group</h2>
       <ResponsiveContainer width="100%" height={220}>
         <BarChart data={chartData}>
-          <XAxis dataKey="week" tick={{ fontSize: 10 }} />
-          <YAxis tick={{ fontSize: 10 }} />
-          <Tooltip />
-          <Legend wrapperStyle={{ fontSize: 10 }} />
+          <XAxis dataKey="week" tick={CHART_AXIS_TICK} />
+          <YAxis tick={CHART_AXIS_TICK} />
+          <Tooltip {...CHART_TOOLTIP_STYLE} />
+          <Legend wrapperStyle={{ fontSize: 10, color: "#a89a83" }} />
           {MUSCLE_GROUPS.map((g) => (
             <Bar key={g} dataKey={g} stackId="a" fill={MUSCLE_GROUP_COLORS[g]} animationDuration={500} />
           ))}

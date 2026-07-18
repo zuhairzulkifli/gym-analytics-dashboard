@@ -5,6 +5,7 @@ import { getAllSets } from "../../db/queries/sets";
 import { listExercises } from "../../db/queries/exercises";
 import { estimate1RM } from "../../utils/calculations";
 import { MUSCLE_GROUP_COLORS } from "../../utils/muscleGroupColors";
+import { CHART_AXIS_TICK, CHART_TOOLTIP_STYLE } from "../../utils/chartTheme";
 import type { Exercise, WorkoutSet } from "../../db/types";
 
 export default function OneRepMaxChart({ revealDelayMs }: { revealDelayMs?: number }) {
@@ -28,7 +29,7 @@ export default function OneRepMaxChart({ revealDelayMs }: { revealDelayMs?: numb
   }, [sets, exercises]);
 
   const selectedExercise = trainedExercises.find((e) => e.id === selectedId);
-  const lineColor = selectedExercise ? MUSCLE_GROUP_COLORS[selectedExercise.muscleGroup] : "#60a5fa";
+  const lineColor = selectedExercise ? MUSCLE_GROUP_COLORS[selectedExercise.muscleGroup] : "#e08a5f";
 
   const chartData = useMemo(() => {
     if (!selectedId) return [];
@@ -45,7 +46,7 @@ export default function OneRepMaxChart({ revealDelayMs }: { revealDelayMs?: numb
 
   if (trainedExercises.length === 0) {
     return (
-      <Card revealDelayMs={revealDelayMs} className="text-sm text-slate-400">
+      <Card revealDelayMs={revealDelayMs} className="text-sm text-ink-muted">
         Log a few sets to see your 1RM trend.
       </Card>
     );
@@ -53,11 +54,11 @@ export default function OneRepMaxChart({ revealDelayMs }: { revealDelayMs?: numb
 
   return (
     <Card revealDelayMs={revealDelayMs}>
-      <h2 className="mb-2 font-semibold">Estimated 1RM trend</h2>
+      <h2 className="mb-2 font-display text-lg font-semibold">Estimated 1RM trend</h2>
       <select
         value={selectedId ?? ""}
         onChange={(e) => setSelectedId(Number(e.target.value))}
-        className="mb-3 w-full rounded-lg bg-slate-800 px-3 py-2 text-sm transition-colors duration-200"
+        className="mb-3 w-full rounded-lg bg-surface-card px-3 py-2 text-sm transition-colors duration-200"
       >
         {trainedExercises.map((e) => (
           <option key={e.id} value={e.id}>
@@ -67,9 +68,9 @@ export default function OneRepMaxChart({ revealDelayMs }: { revealDelayMs?: numb
       </select>
       <ResponsiveContainer width="100%" height={200}>
         <LineChart data={chartData}>
-          <XAxis dataKey="date" tick={{ fontSize: 10 }} />
-          <YAxis tick={{ fontSize: 10 }} />
-          <Tooltip />
+          <XAxis dataKey="date" tick={CHART_AXIS_TICK} />
+          <YAxis tick={CHART_AXIS_TICK} />
+          <Tooltip {...CHART_TOOLTIP_STYLE} />
           <Line
             type="monotone"
             dataKey="est1rm"

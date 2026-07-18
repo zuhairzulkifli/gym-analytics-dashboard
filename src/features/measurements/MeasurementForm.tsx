@@ -34,7 +34,7 @@ export default function MeasurementForm({ onSaved }: { onSaved: () => void }) {
       <select
         value={type}
         onChange={(e) => setType(e.target.value as MeasurementType)}
-        className="rounded-lg bg-slate-800 px-2 py-2 text-sm"
+        className="rounded-lg bg-surface-card px-2 py-2 text-sm transition-colors duration-200"
       >
         {TYPES.map((t) => (
           <option key={t.value} value={t.value}>
@@ -47,12 +47,12 @@ export default function MeasurementForm({ onSaved }: { onSaved: () => void }) {
         step={0.1}
         value={value}
         onChange={(e) => setValue(Number(e.target.value))}
-        className="w-24 rounded-lg bg-slate-800 px-2 py-2 text-sm"
+        className="w-24 rounded-lg bg-surface-card px-2 py-2 text-sm transition-colors duration-200"
       />
-      <span className="pb-2 text-xs text-slate-400">{selectedUnit}</span>
+      <span className="pb-2 text-xs text-ink-muted">{selectedUnit}</span>
       <button
         type="submit"
-        className="rounded-lg bg-brand px-3 py-2 text-sm font-semibold transition-colors duration-200 hover:bg-brand-dark"
+        className="rounded-lg bg-accent px-3 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-accent-dark"
       >
         Log
       </button>

@@ -19,7 +19,7 @@ export default function ExportImport() {
   return (
     <div className="space-y-2">
       <button
-        className="w-full rounded-lg bg-slate-800 py-2 text-sm"
+        className="w-full rounded-lg bg-surface-card py-2 text-sm transition-colors duration-200 hover:bg-surface-raised"
         onClick={async () => {
           const json = await exportAllDataAsJson();
           download(`gym-tracker-backup-${new Date().toISOString().slice(0, 10)}.json`, json, "application/json");
@@ -28,7 +28,7 @@ export default function ExportImport() {
         ⬇️ Export full backup (JSON)
       </button>
       <button
-        className="w-full rounded-lg bg-slate-800 py-2 text-sm"
+        className="w-full rounded-lg bg-surface-card py-2 text-sm transition-colors duration-200 hover:bg-surface-raised"
         onClick={async () => {
           const csv = await exportSetsAsCsv();
           download(`gym-tracker-sets-${new Date().toISOString().slice(0, 10)}.csv`, csv, "text/csv");
@@ -37,7 +37,7 @@ export default function ExportImport() {
         ⬇️ Export sets (CSV)
       </button>
       <button
-        className="w-full rounded-lg bg-slate-800 py-2 text-sm"
+        className="w-full rounded-lg bg-surface-card py-2 text-sm transition-colors duration-200 hover:bg-surface-raised"
         onClick={() => fileInputRef.current?.click()}
       >
         ⬆️ Import backup (JSON)

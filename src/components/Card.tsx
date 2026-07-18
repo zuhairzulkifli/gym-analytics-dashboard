@@ -4,11 +4,11 @@ type CardVariant = "default" | "emphasis" | "subtle";
 
 const VARIANT_CLASSES: Record<CardVariant, string> = {
   // Hero widgets: the PR board, the heatmap — the things worth looking at first.
-  emphasis: "border border-slate-700 bg-slate-800/70",
+  emphasis: "border border-surface-border bg-surface-raised/80",
   // Standard data panels: charts, lists.
-  default: "border border-slate-800 bg-slate-900/60",
+  default: "border border-surface-border bg-surface-card/70",
   // Utility forms: log-a-measurement, set-a-goal — present, not competing.
-  subtle: "border border-transparent bg-slate-900/30"
+  subtle: "border border-transparent bg-surface-card/30"
 };
 
 export default function Card({

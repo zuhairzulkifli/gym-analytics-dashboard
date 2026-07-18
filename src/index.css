@@ -14,8 +14,9 @@ html, body, #root {
 body {
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
-  background-color: #0f172a;
-  color: #f1f5f9;
+  background-color: #17140f;
+  color: #f2ead9;
+  font-optical-sizing: auto;
 }
 
 /* Entrance animation for dashboard sections. Runs unconditionally on mount
