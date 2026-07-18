@@ -3,6 +3,7 @@ import Card from "../components/Card";
 import TemplateForm from "../features/templates/TemplateForm";
 import TemplateList from "../features/templates/TemplateList";
 import ExerciseManager from "../features/settings/ExerciseManager";
+import ExportImport from "../features/settings/ExportImport";
 
 export default function SettingsPage() {
   const [refreshKey, setRefreshKey] = useState(0);
@@ -20,6 +21,10 @@ export default function SettingsPage() {
         <div key={refreshKey} className="mt-4">
           <TemplateList />
         </div>
+      </Card>
+      <Card>
+        <h2 className="mb-2 font-semibold">Data</h2>
+        <ExportImport />
       </Card>
     </div>
   );
