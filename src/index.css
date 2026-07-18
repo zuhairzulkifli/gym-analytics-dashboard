@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 html, body, #root {
   height: 100%;
 }
@@ -11,4 +16,34 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
   background-color: #0f172a;
   color: #f1f5f9;
+}
+
+/* Entrance animation for dashboard sections. Runs unconditionally on mount
+   (no IntersectionObserver / scroll gating), so it can never leave content
+   stuck invisible on a hidden tab or in a headless renderer. */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  animation: reveal-up 0.5s var(--ease-out-expo) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

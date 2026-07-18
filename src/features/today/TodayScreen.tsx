@@ -55,7 +55,7 @@ export default function TodayScreen() {
       <h1 className="text-xl font-bold">👋 Welcome back</h1>
       <Card className="flex items-center justify-between">
         <span className="text-sm">Current streak</span>
-        <span className="text-lg font-semibold text-brand">🔥 {streak} days</span>
+        <span className="text-lg font-semibold text-brand-text">🔥 {streak} days</span>
       </Card>
       <Card>
         <button
@@ -75,7 +75,7 @@ export default function TodayScreen() {
                 onClick={() => handleStartFromTemplate(t)}
                 className="block w-full rounded-lg bg-slate-800 px-3 py-2 text-left text-sm"
               >
-                {t.name} <span className="text-slate-500">· {t.items.length} exercises</span>
+                {t.name} <span className="text-slate-400">· {t.items.length} exercises</span>
               </button>
             ))}
           </div>

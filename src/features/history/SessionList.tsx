@@ -26,13 +26,13 @@ export default function SessionList() {
         return (
           <Card key={session.id}>
             <button
-              className="flex w-full items-center justify-between text-left"
+              className="-m-2 flex w-[calc(100%+1rem)] items-center justify-between rounded-lg p-2 text-left transition-colors duration-200 hover:bg-slate-800/50"
               onClick={() => setOpenId(isOpen ? null : session.id!)}
             >
               <span className="font-semibold">
                 {session.name} — {session.date}
               </span>
-              <span className="text-xs text-slate-500">
+              <span className="text-xs text-slate-400">
                 {session.sets.length} sets, {totalVolume.toFixed(0)}kg
               </span>
             </button>
@@ -44,7 +44,8 @@ export default function SessionList() {
                       {set.exerciseName} ({set.muscleGroup}) — {set.weightKg}kg x {set.reps} @ RPE {set.rpe}
                     </span>
                     <button
-                      className="text-xs text-red-400"
+                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-sm text-red-400 transition-colors duration-200 hover:bg-red-950/40"
+                      aria-label={`Delete ${set.exerciseName} set`}
                       onClick={async () => {
                         await deleteSet(set.id!);
                         reload();

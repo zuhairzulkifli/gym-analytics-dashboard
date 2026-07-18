@@ -31,23 +31,26 @@ export default function RestTimer() {
   const ss = seconds % 60;
 
   return (
-    <div className="fixed bottom-24 left-1/2 z-40 flex -translate-x-1/2 items-center gap-3 rounded-full bg-slate-800 px-4 py-2 shadow-lg">
-      <span className="font-mono text-lg">
+    <div className="reveal fixed bottom-24 left-1/2 z-40 flex -translate-x-1/2 items-center gap-3 rounded-full bg-slate-800 px-4 py-2 shadow-lg">
+      <span className="font-mono text-lg tabular-nums">
         {mm}:{ss.toString().padStart(2, "0")}
       </span>
       <button
-        className="rounded-full bg-slate-700 px-3 py-1 text-xs"
+        className="rounded-full bg-slate-700 px-3 py-1 text-xs transition-colors duration-200 hover:bg-slate-600"
         onClick={() => startRest(Math.max(seconds - 15, 0))}
       >
         -15s
       </button>
       <button
-        className="rounded-full bg-slate-700 px-3 py-1 text-xs"
+        className="rounded-full bg-slate-700 px-3 py-1 text-xs transition-colors duration-200 hover:bg-slate-600"
         onClick={() => startRest(seconds + 15)}
       >
         +15s
       </button>
-      <button className="rounded-full bg-brand px-3 py-1 text-xs" onClick={clearRest}>
+      <button
+        className="rounded-full bg-brand px-3 py-1 text-xs transition-colors duration-200 hover:bg-brand-dark"
+        onClick={clearRest}
+      >
         Skip
       </button>
     </div>

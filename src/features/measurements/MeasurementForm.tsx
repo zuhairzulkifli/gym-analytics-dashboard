@@ -49,8 +49,11 @@ export default function MeasurementForm({ onSaved }: { onSaved: () => void }) {
         onChange={(e) => setValue(Number(e.target.value))}
         className="w-24 rounded-lg bg-slate-800 px-2 py-2 text-sm"
       />
-      <span className="pb-2 text-xs text-slate-500">{selectedUnit}</span>
-      <button type="submit" className="rounded-lg bg-brand px-3 py-2 text-sm font-semibold">
+      <span className="pb-2 text-xs text-slate-400">{selectedUnit}</span>
+      <button
+        type="submit"
+        className="rounded-lg bg-brand px-3 py-2 text-sm font-semibold transition-colors duration-200 hover:bg-brand-dark"
+      >
         Log
       </button>
     </form>

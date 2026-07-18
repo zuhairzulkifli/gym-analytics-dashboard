@@ -73,10 +73,10 @@ export default function ExerciseManager() {
           {customExercises.map((ex) => (
             <div key={ex.id} className="flex items-center justify-between rounded-lg bg-slate-800 px-3 py-2 text-sm">
               <span>
-                {ex.name} <span className="text-slate-500">· {ex.muscleGroup}</span>
+                {ex.name} <span className="text-slate-400">· {ex.muscleGroup}</span>
               </span>
               <button
-                className="text-xs text-red-400"
+                className="rounded-lg px-3 py-2 text-xs text-red-400 transition-colors duration-200 hover:bg-red-950/40"
                 onClick={async () => {
                   const result = await deleteExercise(ex.id!);
                   if (!result.ok) {

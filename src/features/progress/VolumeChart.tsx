@@ -5,19 +5,10 @@ import Card from "../../components/Card";
 import { getAllSets } from "../../db/queries/sets";
 import { listExercises } from "../../db/queries/exercises";
 import { computeVolume } from "../../utils/calculations";
+import { MUSCLE_GROUP_COLORS, MUSCLE_GROUPS } from "../../utils/muscleGroupColors";
 import type { Exercise, WorkoutSet, MuscleGroup } from "../../db/types";
 
-const MUSCLE_GROUPS: MuscleGroup[] = ["Chest", "Back", "Legs", "Shoulders", "Arms", "Core"];
-const COLORS: Record<MuscleGroup, string> = {
-  Chest: "#2563eb",
-  Back: "#16a34a",
-  Legs: "#dc2626",
-  Shoulders: "#d97706",
-  Arms: "#9333ea",
-  Core: "#0891b2"
-};
-
-export default function VolumeChart() {
+export default function VolumeChart({ revealDelayMs }: { revealDelayMs?: number }) {
   const [sets, setSets] = useState<WorkoutSet[]>([]);
   const [exercises, setExercises] = useState<Exercise[]>([]);
 
@@ -46,11 +37,15 @@ export default function VolumeChart() {
   }, [sets, exercises]);
 
   if (chartData.length === 0) {
-    return <Card className="text-sm text-slate-400">Log a few sets to see weekly volume.</Card>;
+    return (
+      <Card revealDelayMs={revealDelayMs} className="text-sm text-slate-400">
+        Log a few sets to see weekly volume.
+      </Card>
+    );
   }
 
   return (
-    <Card>
+    <Card revealDelayMs={revealDelayMs}>
       <h2 className="mb-2 font-semibold">Weekly volume per muscle group</h2>
       <ResponsiveContainer width="100%" height={220}>
         <BarChart data={chartData}>
@@ -59,7 +54,7 @@ export default function VolumeChart() {
           <Tooltip />
           <Legend wrapperStyle={{ fontSize: 10 }} />
           {MUSCLE_GROUPS.map((g) => (
-            <Bar key={g} dataKey={g} stackId="a" fill={COLORS[g]} />
+            <Bar key={g} dataKey={g} stackId="a" fill={MUSCLE_GROUP_COLORS[g]} animationDuration={500} />
           ))}
         </BarChart>
       </ResponsiveContainer>

@@ -25,16 +25,19 @@ export default function TemplateList({
         <div key={t.id} className="flex items-center justify-between rounded-lg bg-slate-800 px-3 py-2 text-sm">
           <div>
             <p className="font-semibold">{t.name}</p>
-            <p className="text-xs text-slate-500">{t.items.length} exercises</p>
+            <p className="text-xs text-slate-400">{t.items.length} exercises</p>
           </div>
           <div className="flex gap-2">
             {onStart && (
-              <button className="rounded-lg bg-brand px-2 py-1 text-xs" onClick={() => onStart(t)}>
+              <button
+                className="rounded-lg bg-brand px-3 py-2 text-xs transition-colors duration-200 hover:bg-brand-dark"
+                onClick={() => onStart(t)}
+              >
                 Start
               </button>
             )}
             <button
-              className="rounded-lg bg-slate-700 px-2 py-1 text-xs"
+              className="rounded-lg bg-slate-700 px-3 py-2 text-xs transition-colors duration-200 hover:bg-slate-600"
               onClick={async () => {
                 await deleteTemplate(t.id!);
                 reload();

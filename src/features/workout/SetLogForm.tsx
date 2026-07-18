@@ -25,7 +25,7 @@ export default function SetLogForm({
       }}
     >
       <p className="text-sm font-semibold">
-        {exercise.name} <span className="text-slate-500">· {exercise.muscleGroup}</span>
+        {exercise.name} <span className="text-slate-400">· {exercise.muscleGroup}</span>
       </p>
       <label className="block text-xs text-slate-400">
         Weight (kg)

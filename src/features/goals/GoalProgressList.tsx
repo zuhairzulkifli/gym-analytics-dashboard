@@ -8,7 +8,7 @@ import { computeGoalProgress } from "../../utils/goalProgress";
 import type { Goal, Exercise } from "../../db/types";
 import { subDays } from "date-fns";
 
-export default function GoalProgressList() {
+export default function GoalProgressList({ revealDelayMs }: { revealDelayMs?: number }) {
   const [goals, setGoals] = useState<Goal[]>([]);
   const [exercises, setExercises] = useState<Exercise[]>([]);
   const [progress, setProgress] = useState<Map<number, { current: number; target: number; percent: number }>>(new Map());
@@ -40,13 +40,17 @@ export default function GoalProgressList() {
   }, []);
 
   if (goals.length === 0) {
-    return <Card className="text-sm text-slate-400">No goals set yet.</Card>;
+    return (
+      <Card revealDelayMs={revealDelayMs} className="text-sm text-slate-400">
+        No goals set yet.
+      </Card>
+    );
   }
 
   const exerciseName = (id?: number) => exercises.find((e) => e.id === id)?.name ?? "";
 
   return (
-    <Card>
+    <Card revealDelayMs={revealDelayMs}>
       <h2 className="mb-2 font-semibold">Goals</h2>
       <div className="space-y-3">
         {goals.map((goal) => {
@@ -60,7 +64,8 @@ export default function GoalProgressList() {
                     : `${exerciseName(goal.exerciseId)} → ${goal.targetValue}`}
                 </span>
                 <button
-                  className="text-xs text-red-400"
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-sm text-red-400 transition-colors duration-200 hover:bg-red-950/40"
+                  aria-label="Delete goal"
                   onClick={async () => {
                     await deleteGoal(goal.id!);
                     reload();
@@ -71,11 +76,11 @@ export default function GoalProgressList() {
               </div>
               <div className="h-2 w-full rounded-full bg-slate-800">
                 <div
-                  className="h-2 rounded-full bg-brand"
+                  className="h-2 rounded-full bg-brand transition-[width] duration-700 ease-out-quart"
                   style={{ width: `${p.percent}%` }}
                 />
               </div>
-              <p className="mt-1 text-xs text-slate-500">
+              <p className="mt-1 text-xs text-slate-400">
                 {p.current} / {p.target} ({p.percent}%)
               </p>
             </div>

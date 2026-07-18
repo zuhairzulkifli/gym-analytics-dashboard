@@ -58,7 +58,7 @@ export default function TemplateForm({ onSaved }: { onSaved: () => void }) {
             value={item.targetSets}
             onChange={(e) => updateItem(i, { targetSets: Number(e.target.value) })}
           />
-          <span className="text-xs text-slate-500">x</span>
+          <span className="text-xs text-slate-400">x</span>
           <input
             type="number"
             className="w-14 rounded-lg bg-slate-800 px-2 py-1 text-xs"
