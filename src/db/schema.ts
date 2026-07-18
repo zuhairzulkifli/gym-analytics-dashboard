@@ -22,7 +22,7 @@ export class GymTrackerDB extends Dexie {
     super("gym-tracker");
     this.version(1).stores({
       exercises: "++id, name, muscleGroup, category, isCustom",
-      sessions: "++id, date",
+      sessions: "++id, date, startedAt",
       sets: "++id, sessionId, exerciseId, createdAt",
       templates: "++id, name",
       measurements: "++id, date, type",

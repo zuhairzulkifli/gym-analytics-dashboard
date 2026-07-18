@@ -1,3 +1,5 @@
+import HistoryScreen from "../features/history/HistoryScreen";
+
 export default function HistoryPage() {
-  return <h1 className="text-xl font-bold">History</h1>;
+  return <HistoryScreen />;
 }
