@@ -9,7 +9,9 @@ import { startSession, endSession } from "../../db/queries/sessions";
 import { logSet, getAllSets } from "../../db/queries/sets";
 import { computePRs } from "../../utils/calculations";
 import { ensureDefaultSettings } from "../../db/schema";
-import type { Exercise } from "../../db/types";
+import TemplateList from "../templates/TemplateList";
+import { startSessionFromTemplate } from "../../db/queries/templates";
+import type { Exercise, Template } from "../../db/types";
 
 const SESSION_TYPES = ["Upper Body", "Lower Body", "Push", "Pull", "Legs", "Full Body", "Other"];
 
@@ -47,25 +49,36 @@ export default function TrainScreen() {
     setActiveExercise(null);
   };
 
+  const handleStartFromTemplate = async (template: Template) => {
+    const id = await startSessionFromTemplate(template);
+    start(template.name, id, new Date().toISOString());
+  };
+
   if (!sessionId) {
     return (
-      <Card>
-        <h1 className="mb-3 text-lg font-bold">Start a workout</h1>
-        <select
-          value={sessionType}
-          onChange={(e) => setSessionType(e.target.value)}
-          className="mb-3 w-full rounded-lg bg-slate-800 px-3 py-2 text-sm"
-        >
-          {SESSION_TYPES.map((t) => (
-            <option key={t} value={t}>
-              {t}
-            </option>
-          ))}
-        </select>
-        <button onClick={handleStart} className="w-full rounded-lg bg-brand py-2 font-semibold">
-          ▶️ Start Workout
-        </button>
-      </Card>
+      <div className="space-y-4">
+        <Card>
+          <h1 className="mb-3 text-lg font-bold">Start a workout</h1>
+          <select
+            value={sessionType}
+            onChange={(e) => setSessionType(e.target.value)}
+            className="mb-3 w-full rounded-lg bg-slate-800 px-3 py-2 text-sm"
+          >
+            {SESSION_TYPES.map((t) => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
+          </select>
+          <button onClick={handleStart} className="w-full rounded-lg bg-brand py-2 font-semibold">
+            ▶️ Start Workout
+          </button>
+        </Card>
+        <Card>
+          <h2 className="mb-2 font-semibold">Or start from a template</h2>
+          <TemplateList onStart={handleStartFromTemplate} />
+        </Card>
+      </div>
     );
   }
 
